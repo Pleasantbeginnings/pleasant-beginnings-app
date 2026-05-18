@@ -2,9 +2,6 @@
   "name": "workspace",
   "version": "0.0.0",
   "license": "MIT",
-  "engines": {
-    "node": ">=20.11.0"
-  },
   "scripts": {
     "preinstall": "rm -f package-lock.json yarn.lock",
     "build": "pnpm run typecheck && pnpm -r --if-present run build",

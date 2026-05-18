@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "installCommand": "npm install -g pnpm@10 && pnpm install --no-frozen-lockfile",
+  "installCommand": "pnpm install",
   "buildCommand": "NODE_ENV=production BASE_PATH=/ pnpm --filter @workspace/pleasant-beginnings run build",
   "outputDirectory": "artifacts/pleasant-beginnings/dist/public",
   "functions": {

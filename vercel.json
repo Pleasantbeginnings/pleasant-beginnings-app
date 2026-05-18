@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "BASE_PATH=/ pnpm --filter @workspace/pleasant-beginnings run build",
+  "buildCommand": "NODE_ENV=production BASE_PATH=/ pnpm --filter @workspace/pleasant-beginnings run build",
   "outputDirectory": "artifacts/pleasant-beginnings/dist/public",
   "installCommand": "pnpm install",
   "functions": {

@@ -1,0 +1,884 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: Pleasant Beginnings Inc. community web app API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: programs
+    description: Programs directory
+  - name: events
+    description: Events listing
+  - name: rsvps
+    description: Event RSVPs
+  - name: volunteers
+    description: Volunteer sign-ups
+  - name: contacts
+    description: Intake/contact form submissions
+  - name: stats
+    description: Dashboard/summary stats
+  - name: newsletter
+    description: Newsletter subscriptions
+  - name: stories
+    description: Success stories / testimonials
+  - name: gallery
+    description: Photo gallery
+  - name: storage
+    description: Object storage uploads
+paths:
+  /storage/uploads/request-url:
+    post:
+      operationId: requestUploadUrl
+      tags: [storage]
+      summary: Request a presigned upload URL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequestUploadUrlBody"
+      responses:
+        "200":
+          description: Upload URL
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RequestUploadUrlResponse"
+
+  /gallery:
+    get:
+      operationId: listGallery
+      tags: [gallery]
+      summary: List all active gallery images
+      responses:
+        "200":
+          description: Gallery images
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GalleryImage"
+    post:
+      operationId: createGalleryImage
+      tags: [gallery]
+      summary: Add a gallery image (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateGalleryImageBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GalleryImage"
+
+  /gallery/{id}:
+    delete:
+      operationId: deleteGalleryImage
+      tags: [gallery]
+      summary: Delete a gallery image (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /programs:
+    get:
+      operationId: listPrograms
+      tags: [programs]
+      summary: List all programs
+      responses:
+        "200":
+          description: List of programs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Program"
+    post:
+      operationId: createProgram
+      tags: [programs]
+      summary: Create a program
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateProgramBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Program"
+
+  /programs/{id}:
+    get:
+      operationId: getProgram
+      tags: [programs]
+      summary: Get a single program
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Program
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Program"
+
+  /events:
+    get:
+      operationId: listEvents
+      tags: [events]
+      summary: List all events
+      responses:
+        "200":
+          description: List of events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Event"
+    post:
+      operationId: createEvent
+      tags: [events]
+      summary: Create an event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEventBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Event"
+
+  /events/{id}:
+    delete:
+      operationId: deleteEvent
+      tags: [events]
+      summary: Delete an event (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /events/upcoming:
+    get:
+      operationId: listUpcomingEvents
+      tags: [events]
+      summary: List upcoming events (next 3)
+      responses:
+        "200":
+          description: Upcoming events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Event"
+
+  /events/{id}/rsvps:
+    get:
+      operationId: listEventRsvps
+      tags: [rsvps]
+      summary: List RSVPs for an event (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: List of RSVPs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EventRsvp"
+    post:
+      operationId: createEventRsvp
+      tags: [rsvps]
+      summary: RSVP for an event
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEventRsvpBody"
+      responses:
+        "201":
+          description: RSVP submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventRsvp"
+        "409":
+          description: Already RSVP'd with that email
+
+  /events/{id}/rsvp-count:
+    get:
+      operationId: getEventRsvpCount
+      tags: [rsvps]
+      summary: Get RSVP count for an event
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: RSVP count
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventRsvpCount"
+
+  /volunteers:
+    get:
+      operationId: listVolunteers
+      tags: [volunteers]
+      summary: List all volunteer sign-ups
+      responses:
+        "200":
+          description: List of volunteers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Volunteer"
+    post:
+      operationId: createVolunteer
+      tags: [volunteers]
+      summary: Submit a volunteer sign-up
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateVolunteerBody"
+      responses:
+        "201":
+          description: Volunteer sign-up submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Volunteer"
+
+  /contacts:
+    get:
+      operationId: listContacts
+      tags: [contacts]
+      summary: List all contact/intake submissions
+      responses:
+        "200":
+          description: List of contacts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Contact"
+    post:
+      operationId: createContact
+      tags: [contacts]
+      summary: Submit an intake/contact form
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateContactBody"
+      responses:
+        "201":
+          description: Contact submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contact"
+
+  /stories:
+    get:
+      operationId: listSuccessStories
+      tags: [stories]
+      summary: List all active success stories
+      responses:
+        "200":
+          description: List of success stories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SuccessStory"
+    post:
+      operationId: createSuccessStory
+      tags: [stories]
+      summary: Create a success story (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateSuccessStoryBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessStory"
+
+  /stories/{id}:
+    delete:
+      operationId: deleteSuccessStory
+      tags: [stories]
+      summary: Delete a success story (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /newsletter/subscribe:
+    post:
+      operationId: subscribeNewsletter
+      tags: [newsletter]
+      summary: Subscribe to the newsletter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SubscribeNewsletterBody"
+      responses:
+        "200":
+          description: Subscribed (or already subscribed)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubscribeNewsletterResponse"
+
+  /newsletter/subscribers:
+    get:
+      operationId: listNewsletterSubscribers
+      tags: [newsletter]
+      summary: List all newsletter subscribers (admin)
+      responses:
+        "200":
+          description: List of subscribers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NewsletterSubscriber"
+
+  /stats/summary:
+    get:
+      operationId: getSummaryStats
+      tags: [stats]
+      summary: Get summary stats for homepage impact section
+      responses:
+        "200":
+          description: Summary stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SummaryStats"
+
+  /stats/analytics:
+    get:
+      operationId: getAnalyticsDashboard
+      tags: [stats]
+      summary: Get analytics data for admin impact dashboard
+      responses:
+        "200":
+          description: Analytics dashboard data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnalyticsDashboard"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required: [status]
+
+    Program:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        imageUrl:
+          type: string
+          nullable: true
+        active:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, name, description, category, active, createdAt]
+
+    CreateProgramBody:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        imageUrl:
+          type: string
+          nullable: true
+        active:
+          type: boolean
+      required: [name, description, category, active]
+
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        location:
+          type: string
+        eventDate:
+          type: string
+          format: date-time
+        registrationUrl:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, title, description, location, eventDate, createdAt]
+
+    CreateEventBody:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        location:
+          type: string
+        eventDate:
+          type: string
+          format: date-time
+        registrationUrl:
+          type: string
+          nullable: true
+      required: [title, description, location, eventDate]
+
+    EventRsvp:
+      type: object
+      properties:
+        id:
+          type: integer
+        eventId:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        guestCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, eventId, firstName, lastName, email, guestCount, createdAt]
+
+    CreateEventRsvpBody:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        guestCount:
+          type: integer
+          minimum: 1
+          maximum: 10
+      required: [firstName, lastName, email]
+
+    EventRsvpCount:
+      type: object
+      properties:
+        eventId:
+          type: integer
+        rsvpCount:
+          type: integer
+        totalGuests:
+          type: integer
+      required: [eventId, rsvpCount, totalGuests]
+
+    Volunteer:
+      type: object
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+          nullable: true
+        interests:
+          type: string
+          nullable: true
+        availability:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, firstName, lastName, email, createdAt]
+
+    CreateVolunteerBody:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+          nullable: true
+        interests:
+          type: string
+          nullable: true
+        availability:
+          type: string
+          nullable: true
+      required: [firstName, lastName, email]
+
+    Contact:
+      type: object
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+          nullable: true
+        programInterest:
+          type: string
+          nullable: true
+        message:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, firstName, lastName, email, message, createdAt]
+
+    CreateContactBody:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+          nullable: true
+        programInterest:
+          type: string
+          nullable: true
+        message:
+          type: string
+      required: [firstName, lastName, email, message]
+
+    SummaryStats:
+      type: object
+      properties:
+        totalPrograms:
+          type: integer
+        totalVolunteers:
+          type: integer
+        totalContacts:
+          type: integer
+        upcomingEventsCount:
+          type: integer
+        yearsServing:
+          type: integer
+      required: [totalPrograms, totalVolunteers, totalContacts, upcomingEventsCount, yearsServing]
+
+    RsvpsByEventItem:
+      type: object
+      properties:
+        eventId:
+          type: integer
+        eventTitle:
+          type: string
+        eventDate:
+          type: string
+          format: date-time
+        rsvpCount:
+          type: integer
+        totalGuests:
+          type: integer
+      required: [eventId, eventTitle, eventDate, rsvpCount, totalGuests]
+
+    SignupsByMonthItem:
+      type: object
+      properties:
+        month:
+          type: string
+        volunteers:
+          type: integer
+        contacts:
+          type: integer
+      required: [month, volunteers, contacts]
+
+    NewsletterByMonthItem:
+      type: object
+      properties:
+        month:
+          type: string
+        subscribers:
+          type: integer
+        cumulative:
+          type: integer
+      required: [month, subscribers, cumulative]
+
+    AnalyticsDashboard:
+      type: object
+      properties:
+        rsvpsByEvent:
+          type: array
+          items:
+            $ref: "#/components/schemas/RsvpsByEventItem"
+        signupsByMonth:
+          type: array
+          items:
+            $ref: "#/components/schemas/SignupsByMonthItem"
+        newsletterByMonth:
+          type: array
+          items:
+            $ref: "#/components/schemas/NewsletterByMonthItem"
+      required: [rsvpsByEvent, signupsByMonth, newsletterByMonth]
+
+    NewsletterSubscriber:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        firstName:
+          type: string
+          nullable: true
+        active:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, email, active, createdAt]
+
+    SubscribeNewsletterBody:
+      type: object
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+          nullable: true
+      required: [email]
+
+    SubscribeNewsletterResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        alreadySubscribed:
+          type: boolean
+      required: [success, message, alreadySubscribed]
+
+    SuccessStory:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        role:
+          type: string
+          nullable: true
+        quote:
+          type: string
+        featured:
+          type: boolean
+        active:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, name, quote, featured, active, createdAt]
+
+    CreateSuccessStoryBody:
+      type: object
+      properties:
+        name:
+          type: string
+        role:
+          type: string
+          nullable: true
+        quote:
+          type: string
+        featured:
+          type: boolean
+        active:
+          type: boolean
+      required: [name, quote]
+
+    GalleryImage:
+      type: object
+      properties:
+        id:
+          type: integer
+        objectPath:
+          type: string
+        caption:
+          type: string
+        category:
+          type: string
+        active:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, objectPath, caption, category, active, createdAt]
+
+    CreateGalleryImageBody:
+      type: object
+      properties:
+        objectPath:
+          type: string
+        caption:
+          type: string
+        category:
+          type: string
+      required: [objectPath]
+
+    RequestUploadUrlBody:
+      type: object
+      properties:
+        name:
+          type: string
+        size:
+          type: integer
+        contentType:
+          type: string
+      required: [name, size, contentType]
+
+    RequestUploadUrlResponse:
+      type: object
+      properties:
+        uploadURL:
+          type: string
+        objectPath:
+          type: string
+        metadata:
+          type: object
+          properties:
+            name:
+              type: string
+            size:
+              type: integer
+            contentType:
+              type: string
+          required: [name, size, contentType]
+      required: [uploadURL, objectPath, metadata]

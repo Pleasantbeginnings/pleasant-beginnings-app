@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "buildCommand": "BASE_PATH=/ pnpm --filter @workspace/pleasant-beginnings run build",
+  "outputDirectory": "artifacts/pleasant-beginnings/dist/public",
+  "installCommand": "pnpm install",
+  "functions": {
+    "api/index.ts": {
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

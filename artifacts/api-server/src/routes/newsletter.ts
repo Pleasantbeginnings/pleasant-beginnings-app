@@ -1,13 +1,12 @@
-import { Router, type IRouter } from "express";
-import { desc, eq } from "drizzle-orm";
-import { db, newsletterSubscribersTable } from "@workspace/db";
+import { Router } from "express";
+import { db, newsletterSubscribersTable, desc, eq } from "@workspace/db";
 import {
   SubscribeNewsletterBody,
   SubscribeNewsletterResponse,
   ListNewsletterSubscribersResponse,
 } from "@workspace/api-zod";
 
-const router: IRouter = Router();
+const router = Router();
 
 router.post("/newsletter/subscribe", async (req, res): Promise<void> => {
   const parsed = SubscribeNewsletterBody.safeParse(req.body);

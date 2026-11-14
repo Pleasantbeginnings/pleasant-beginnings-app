@@ -1,7 +1,7 @@
 import { pgTable, serial, integer, text, timestamp, unique } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod/v4";
-import { eventsTable } from "./events";
+import { eventsTable } from "./events.js";
 
 export const eventRsvpsTable = pgTable(
   "event_rsvps",

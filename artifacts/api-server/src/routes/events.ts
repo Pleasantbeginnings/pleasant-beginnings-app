@@ -1,6 +1,5 @@
-import { Router, type IRouter } from "express";
-import { asc, eq, gt } from "drizzle-orm";
-import { db, eventsTable } from "@workspace/db";
+import { Router } from "express";
+import { db, eventsTable, asc, eq, gt } from "@workspace/db";
 import {
   CreateEventBody,
   ListEventsResponse,
@@ -8,7 +7,7 @@ import {
   ListUpcomingEventsResponse,
 } from "@workspace/api-zod";
 
-const router: IRouter = Router();
+const router = Router();
 
 router.get("/events", async (req, res): Promise<void> => {
   const events = await db.select().from(eventsTable).orderBy(asc(eventsTable.eventDate));

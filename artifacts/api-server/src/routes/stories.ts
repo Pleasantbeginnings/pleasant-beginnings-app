@@ -1,9 +1,8 @@
-import { Router, type IRouter } from "express";
-import { eq, desc } from "drizzle-orm";
-import { db, successStoriesTable } from "@workspace/db";
+import { Router } from "express";
+import { db, successStoriesTable, eq, desc } from "@workspace/db";
 import { CreateSuccessStoryBody, ListSuccessStoriesResponseItem } from "@workspace/api-zod";
 
-const router: IRouter = Router();
+const router = Router();
 
 router.get("/stories", async (req, res): Promise<void> => {
   const stories = await db

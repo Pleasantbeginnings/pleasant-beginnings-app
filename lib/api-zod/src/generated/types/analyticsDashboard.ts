@@ -5,9 +5,9 @@
  * Pleasant Beginnings Inc. community web app API
  * OpenAPI spec version: 0.1.0
  */
-import type { NewsletterByMonthItem } from "./newsletterByMonthItem";
-import type { RsvpsByEventItem } from "./rsvpsByEventItem";
-import type { SignupsByMonthItem } from "./signupsByMonthItem";
+import type { NewsletterByMonthItem } from "./newsletterByMonthItem.js";
+import type { RsvpsByEventItem } from "./rsvpsByEventItem.js";
+import type { SignupsByMonthItem } from "./signupsByMonthItem.js";
 
 export interface AnalyticsDashboard {
   rsvpsByEvent: RsvpsByEventItem[];

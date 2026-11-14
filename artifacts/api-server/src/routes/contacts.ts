@@ -1,13 +1,12 @@
-import { Router, type IRouter } from "express";
-import { desc } from "drizzle-orm";
-import { db, contactsTable } from "@workspace/db";
+import { Router } from "express";
+import { db, contactsTable, desc } from "@workspace/db";
 import {
   CreateContactBody,
   ListContactsResponse,
   ListContactsResponseItem,
 } from "@workspace/api-zod";
 
-const router: IRouter = Router();
+const router = Router();
 
 router.get("/contacts", async (req, res): Promise<void> => {
   const contacts = await db.select().from(contactsTable).orderBy(desc(contactsTable.createdAt));

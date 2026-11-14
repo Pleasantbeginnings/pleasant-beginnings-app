@@ -1,6 +1,5 @@
-import { Router, type IRouter } from "express";
-import { eq, sql } from "drizzle-orm";
-import { db, eventRsvpsTable } from "@workspace/db";
+import { Router } from "express";
+import { db, eventRsvpsTable, eq, sql } from "@workspace/db";
 import {
   CreateEventRsvpBody,
   ListEventRsvpsResponseItem,
@@ -8,7 +7,7 @@ import {
   GetEventRsvpCountResponse,
 } from "@workspace/api-zod";
 
-const router: IRouter = Router();
+const router = Router();
 
 router.get("/events/:id/rsvps", async (req, res): Promise<void> => {
   const eventId = parseInt(req.params.id, 10);

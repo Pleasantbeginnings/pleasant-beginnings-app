@@ -1,15 +1,15 @@
 import { Router, type IRouter } from "express";
-import healthRouter from "./health";
-import programsRouter from "./programs";
-import eventsRouter from "./events";
-import eventRsvpsRouter from "./event-rsvps";
-import volunteersRouter from "./volunteers";
-import contactsRouter from "./contacts";
-import statsRouter from "./stats";
-import newsletterRouter from "./newsletter";
-import storiesRouter from "./stories";
-import galleryRouter from "./gallery";
-import storageRouter from "./storage";
+import healthRouter from "./health.js";
+import programsRouter from "./programs.js";
+import eventsRouter from "./events.js";
+import eventRsvpsRouter from "./event-rsvps.js";
+import volunteersRouter from "./volunteers.js";
+import contactsRouter from "./contacts.js";
+import statsRouter from "./stats.js";
+import newsletterRouter from "./newsletter.js";
+import storiesRouter from "./stories.js";
+import galleryRouter from "./gallery.js";
+import storageRouter from "./storage.js";
 
 const router: IRouter = Router();
 

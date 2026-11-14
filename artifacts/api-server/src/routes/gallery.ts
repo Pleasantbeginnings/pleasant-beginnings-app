@@ -1,9 +1,8 @@
-import { Router, type IRouter } from "express";
-import { eq } from "drizzle-orm";
-import { db, galleryTable } from "@workspace/db";
+import { Router } from "express";
+import { db, galleryTable, eq } from "@workspace/db";
 import { CreateGalleryImageBody, ListGalleryResponse, ListGalleryResponseItem } from "@workspace/api-zod";
 
-const router: IRouter = Router();
+const router = Router();
 
 router.get("/gallery", async (req, res): Promise<void> => {
   const images = await db

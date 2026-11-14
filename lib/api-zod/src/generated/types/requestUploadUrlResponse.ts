@@ -5,7 +5,7 @@
  * Pleasant Beginnings Inc. community web app API
  * OpenAPI spec version: 0.1.0
  */
-import type { RequestUploadUrlResponseMetadata } from "./requestUploadUrlResponseMetadata";
+import type { RequestUploadUrlResponseMetadata } from "./requestUploadUrlResponseMetadata.js";
 
 export interface RequestUploadUrlResponse {
   uploadURL: string;

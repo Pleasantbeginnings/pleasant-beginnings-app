@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { db, programsTable, desc, eq } from "@workspace/db";
+import { db, programsTable, desc, eq } from "../../../../lib/db/src/index.js";
 import {
   CreateProgramBody,
   GetProgramParams,
   ListProgramsResponse,
   GetProgramResponse,
-} from "@workspace/api-zod";
+} from "../../../../lib/api-zod/src/index.js";
 
 const router = Router();
 

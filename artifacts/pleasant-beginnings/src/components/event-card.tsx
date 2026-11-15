@@ -33,9 +33,9 @@ export function EventCard({ event, index = 0, isPast = false }: EventCardProps) 
         transition={{ duration: 0.5, delay: index * 0.1 }}
         className="h-full"
       >
-        <Card className="h-full flex flex-col hover:shadow-md transition-shadow duration-300 border-border/50">
+        <Card className="h-full flex flex-col shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 border-border/60">
           <CardHeader className="bg-primary/5 pb-6">
-            <CardTitle className="font-serif text-2xl text-primary mb-4">{event.title}</CardTitle>
+            <CardTitle className="font-serif text-2xl text-primary mb-4 tracking-tight">{event.title}</CardTitle>
             <div className="space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-secondary" />

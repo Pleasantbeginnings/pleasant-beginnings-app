@@ -56,9 +56,12 @@ export function Layout({ children }: LayoutProps) {
         />
       </div>
 
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-[0_10px_40px_-18px_rgba(13,27,42,0.25)]">
         <div className="container mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-3">
+            <span className="hidden sm:flex w-10 h-10 shrink-0 items-center justify-center rounded-md bg-primary text-secondary font-serif font-bold text-base ring-1 ring-secondary/50 shadow-sm">
+              PB
+            </span>
             <span className="font-serif text-2xl font-bold text-primary dark:text-secondary tracking-tight">
               Pleasant Beginnings Inc.
             </span>
@@ -69,8 +72,8 @@ export function Layout({ children }: LayoutProps) {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-secondary ${
-                  location === link.href ? "text-secondary" : "text-muted-foreground"
+                className={`relative text-sm font-medium tracking-wide transition-colors hover:text-secondary after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:rounded-full after:bg-secondary after:transition-all after:duration-300 hover:after:w-full ${
+                  location === link.href ? "text-secondary after:w-full" : "text-muted-foreground"
                 }`}
               >
                 {link.label}
@@ -78,13 +81,13 @@ export function Layout({ children }: LayoutProps) {
             ))}
             <button
               onClick={() => setDonateOpen(true)}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-secondary hover:text-secondary/80 transition-colors border border-secondary/40 hover:border-secondary rounded-full px-4 py-1.5"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-secondary transition-all border border-secondary/50 hover:border-secondary hover:bg-secondary hover:text-secondary-foreground rounded-full px-4 py-1.5 shadow-sm"
             >
-              <Heart className="w-3.5 h-3.5 fill-secondary" />
+              <Heart className="w-3.5 h-3.5 fill-current" />
               Donate
             </button>
             <Link href="/contact">
-              <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
+              <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-md shadow-secondary/25 font-semibold">
                 Get Help
               </Button>
             </Link>
@@ -184,10 +187,15 @@ export function Layout({ children }: LayoutProps) {
         {children}
       </main>
 
-      <footer className="bg-primary text-primary-foreground py-16">
+      <footer className="bg-primary text-primary-foreground py-16 border-t-4 border-secondary">
         <div className="container mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
-            <h3 className="font-serif text-3xl font-bold text-secondary mb-4">Pleasant Beginnings Inc.</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="flex w-11 h-11 shrink-0 items-center justify-center rounded-md bg-white/5 text-secondary font-serif font-bold text-lg ring-1 ring-secondary/60">
+                PB
+              </span>
+              <h3 className="font-serif text-3xl font-bold text-secondary">Pleasant Beginnings Inc.</h3>
+            </div>
             <p className="text-primary-foreground/80 max-w-md text-lg italic font-serif">
               "Preparing for a Better Tomorrow."
             </p>
@@ -207,7 +215,7 @@ export function Layout({ children }: LayoutProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="bg-primary-foreground/10 hover:bg-secondary/20 text-secondary p-3 rounded-full transition-colors"
+                className="bg-primary-foreground/10 hover:bg-secondary/20 text-secondary p-3 rounded-full transition-all ring-1 ring-white/10 hover:ring-secondary/50 hover:-translate-y-0.5"
               >
                 <Instagram className="w-5 h-5" />
               </a>
@@ -216,7 +224,7 @@ export function Layout({ children }: LayoutProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="bg-primary-foreground/10 hover:bg-secondary/20 text-secondary p-3 rounded-full transition-colors"
+                className="bg-primary-foreground/10 hover:bg-secondary/20 text-secondary p-3 rounded-full transition-all ring-1 ring-white/10 hover:ring-secondary/50 hover:-translate-y-0.5"
               >
                 <Facebook className="w-5 h-5" />
               </a>
@@ -225,7 +233,7 @@ export function Layout({ children }: LayoutProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Watch on 4CornersTV"
-                className="bg-primary-foreground/10 hover:bg-secondary/20 text-secondary p-3 rounded-full transition-colors"
+                className="bg-primary-foreground/10 hover:bg-secondary/20 text-secondary p-3 rounded-full transition-all ring-1 ring-white/10 hover:ring-secondary/50 hover:-translate-y-0.5"
               >
                 <Youtube className="w-5 h-5" />
               </a>
@@ -237,18 +245,18 @@ export function Layout({ children }: LayoutProps) {
             <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-primary-foreground/70 hover:text-secondary transition-colors text-sm">
+                  <Link href={link.href} className="inline-block text-primary-foreground/70 hover:text-secondary transition-all hover:translate-x-1 text-sm">
                     {link.label}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/press" className="text-primary-foreground/70 hover:text-secondary transition-colors text-sm">
+                <Link href="/press" className="inline-block text-primary-foreground/70 hover:text-secondary transition-all hover:translate-x-1 text-sm">
                   Press & Media
                 </Link>
               </li>
               <li>
-                <Link href="/impact" className="text-primary-foreground/70 hover:text-secondary transition-colors text-sm">
+                <Link href="/impact" className="inline-block text-primary-foreground/70 hover:text-secondary transition-all hover:translate-x-1 text-sm">
                   Impact Report
                 </Link>
               </li>

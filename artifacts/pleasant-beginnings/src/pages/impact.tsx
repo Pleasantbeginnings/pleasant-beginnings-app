@@ -16,19 +16,19 @@ import {
 import { format } from "date-fns";
 
 const PROGRAMS_STATIC = [
-  { name: "Truth University", category: "Entrepreneurship", icon: "💡", desc: "Equipping youth and adults with business skills, financial literacy, and an entrepreneurial mindset." },
+  { name: "PB Entrepreneurship Program", category: "Entrepreneurship", icon: "💡", desc: "Equipping youth and adults with business skills, financial literacy, and an entrepreneurial mindset." },
   { name: "Podcast Academy", category: "Media & Communication", icon: "🎙️", desc: "Teaching storytelling, recording, and media production to amplify community voices." },
   { name: "Supreme Fitness", category: "Youth Wellness", icon: "🏃", desc: "Physical wellness programming that builds discipline, teamwork, and healthy habits." },
   { name: "Vocal University", category: "Performing Arts", icon: "🎤", desc: "Developing performance, confidence, and artistic expression through music and spoken word." },
   { name: "Mullyvation", category: "Mentorship", icon: "🤝", desc: "One-on-one and group mentorship connecting youth to career-ready professionals." },
   { name: "Officer-Civilian Engagement", category: "Community Safety", icon: "🛡️", desc: "Building trust and dialogue between law enforcement and the Baltimore community." },
-  { name: "ISA Sports Agency", category: "Sports & Career", icon: "🏆", desc: "Guiding student-athletes through academic success, brand building, and professional pathways." },
+  { name: "ISA Imperial Transition Program", category: "Sports & Career", icon: "🏆", desc: "Bringing the business of sports to athletic departments — NIL, community, money, and brand education for student-athletes in a six-to-eight week program." },
 ];
 
 const MILESTONES = [
   { year: "2020", title: "Organization Founded", desc: "Taneisha \"TeeLee\" Lee establishes Pleasant Beginnings Inc. in Baltimore, MD with a mission to prepare families for a better tomorrow." },
   { year: "2021", title: "501(c)(3) Status Granted", desc: "The IRS grants federal tax-exempt status, validating our governance and public charity mission." },
-  { year: "2022", title: "First Programs Launch", desc: "Truth University and Podcast Academy launch, serving our first cohort of Baltimore youth and young adults." },
+  { year: "2022", title: "First Programs Launch", desc: "PB Entrepreneurship Program and Podcast Academy launch, serving our first cohort of Baltimore youth and young adults." },
   { year: "2023", title: "Program Expansion", desc: "Supreme Fitness, Vocal University, and Officer-Civilian Engagement added — reaching deeper into Baltimore communities." },
   { year: "2024", title: "Major Partnerships", desc: "Formalized partnerships with the Baltimore Ravens, Johns Hopkins Medical System, and NexTech Academy for workforce development." },
   { year: "2025", title: "Media Platform Launch", desc: "PBTV launches on 4CornersTV with 'Tea & Truth with BJ Dawkins,' bringing Baltimore voices to a global audience." },

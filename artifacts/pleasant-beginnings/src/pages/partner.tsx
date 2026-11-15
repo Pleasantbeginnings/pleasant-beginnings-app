@@ -106,13 +106,13 @@ export default function Partner() {
                     All 7 Pleasant Beginnings youth curricula are available for purchase by schools, after-school programs, and districts through B2G/WorldERP/K12 purchasing channels. Each program was authored from scratch by Founder TeeLee Lee.
                   </p>
                   <ul className="space-y-2 mb-8 flex-1 text-primary-foreground/90 text-sm">
-                    <li className="flex items-start"><ArrowRight className="w-4 h-4 mr-2 text-secondary shrink-0 mt-0.5" /> <span>Truth University — Youth Entrepreneurship (Grades 5–12)</span></li>
+                    <li className="flex items-start"><ArrowRight className="w-4 h-4 mr-2 text-secondary shrink-0 mt-0.5" /> <span>PB Entrepreneurship Program — Youth Entrepreneurship (Grades 5–12)</span></li>
                     <li className="flex items-start"><ArrowRight className="w-4 h-4 mr-2 text-secondary shrink-0 mt-0.5" /> <span>Podcast Academy — Media & Communication</span></li>
                     <li className="flex items-start"><ArrowRight className="w-4 h-4 mr-2 text-secondary shrink-0 mt-0.5" /> <span>Supreme Fitness — Youth Wellness</span></li>
                     <li className="flex items-start"><ArrowRight className="w-4 h-4 mr-2 text-secondary shrink-0 mt-0.5" /> <span>Vocal University — Mental Health Through Music</span></li>
                     <li className="flex items-start"><ArrowRight className="w-4 h-4 mr-2 text-secondary shrink-0 mt-0.5" /> <span>Mullyvation — Leadership & Motivation</span></li>
                     <li className="flex items-start"><ArrowRight className="w-4 h-4 mr-2 text-secondary shrink-0 mt-0.5" /> <span>Officer-Civilian Engagement — Youth & Police Relations</span></li>
-                    <li className="flex items-start"><ArrowRight className="w-4 h-4 mr-2 text-secondary shrink-0 mt-0.5" /> <span>ISA Sports Agency — Business of Sports</span></li>
+                    <li className="flex items-start"><ArrowRight className="w-4 h-4 mr-2 text-secondary shrink-0 mt-0.5" /> <span>ISA Imperial Transition Program — Business of Sports</span></li>
                   </ul>
                   <a href="#inquire" className="text-secondary font-semibold hover:text-white transition-colors inline-flex items-center">
                     Inquire About Licensing <ArrowRight className="ml-2 w-4 h-4" />

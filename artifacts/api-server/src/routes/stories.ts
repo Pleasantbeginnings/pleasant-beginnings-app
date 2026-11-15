@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { db, successStoriesTable, eq, desc } from "@workspace/db";
-import { CreateSuccessStoryBody, ListSuccessStoriesResponseItem } from "@workspace/api-zod";
+import { db, successStoriesTable, eq, desc } from "../../../../lib/db/src/index.js";
+import { CreateSuccessStoryBody, ListSuccessStoriesResponseItem } from "../../../../lib/api-zod/src/index.js";
 
 const router = Router();
 

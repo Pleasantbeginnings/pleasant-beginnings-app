@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { db, volunteersTable, desc } from "@workspace/db";
+import { db, volunteersTable, desc } from "../../../../lib/db/src/index.js";
 import {
   CreateVolunteerBody,
   ListVolunteersResponse,
   ListVolunteersResponseItem,
-} from "@workspace/api-zod";
+} from "../../../../lib/api-zod/src/index.js";
 
 const router = Router();
 

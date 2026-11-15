@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { db, contactsTable, desc } from "@workspace/db";
+import { db, contactsTable, desc } from "../../../../lib/db/src/index.js";
 import {
   CreateContactBody,
   ListContactsResponse,
   ListContactsResponseItem,
-} from "@workspace/api-zod";
+} from "../../../../lib/api-zod/src/index.js";
 
 const router = Router();
 

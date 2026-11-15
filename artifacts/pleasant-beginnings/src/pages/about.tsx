@@ -18,7 +18,7 @@ const MILESTONES = [
     year: "2022",
     title: "First Programs Take Root",
     description:
-      "The organization launched its first cohort of youth programs — Truth University, Supreme Fitness, and Vocal University — bringing entrepreneurship, wellness, and performing arts to Baltimore youth for the first time.",
+      "The organization launched its first cohort of youth programs — PB Entrepreneurship Program, Supreme Fitness, and Vocal University — bringing entrepreneurship, wellness, and performing arts to Baltimore youth for the first time.",
   },
   {
     year: "2023",
@@ -30,7 +30,7 @@ const MILESTONES = [
     year: "2024",
     title: "Partnerships & Full Program Suite",
     description:
-      "Podcast Academy and ISA Sports Agency launched, completing all seven core programs. Formalized partnerships with the Baltimore Ravens, Johns Hopkins Medical System, NexTech Academy, and others solidified PB's place as a community institution.",
+      "Podcast Academy and the ISA Imperial Transition Program launched, completing all seven core programs. Formalized partnerships with the Baltimore Ravens, Johns Hopkins Medical System, NexTech Academy, and others solidified PB's place as a community institution.",
   },
   {
     year: "2025",

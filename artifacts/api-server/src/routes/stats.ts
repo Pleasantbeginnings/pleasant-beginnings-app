@@ -10,8 +10,8 @@ import {
   contactsTable,
   eventRsvpsTable,
   newsletterSubscribersTable,
-} from "@workspace/db";
-import { GetSummaryStatsResponse, GetAnalyticsDashboardResponse } from "@workspace/api-zod";
+} from "../../../../lib/db/src/index.js";
+import { GetSummaryStatsResponse, GetAnalyticsDashboardResponse } from "../../../../lib/api-zod/src/index.js";
 
 const router = Router();
 

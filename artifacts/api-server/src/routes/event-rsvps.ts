@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { db, eventRsvpsTable, eq, sql } from "@workspace/db";
+import { db, eventRsvpsTable, eq, sql } from "../../../../lib/db/src/index.js";
 import {
   CreateEventRsvpBody,
   ListEventRsvpsResponseItem,
   ListEventRsvpsResponse,
   GetEventRsvpCountResponse,
-} from "@workspace/api-zod";
+} from "../../../../lib/api-zod/src/index.js";
 
 const router = Router();
 

@@ -7,9 +7,9 @@ import { Info } from "lucide-react";
 
 const FALLBACK_PROGRAMS = [
   {
-    name: "Truth University",
+    name: "PB Entrepreneurship Program",
     category: "Entrepreneurship",
-    description: "Students develop business ideas, learn money management, branding, and leadership. Includes pitch presentations and team collaboration. Curriculum authored by TeeLee Lee. Grades 5–12. Available in schools and after-school settings through B2G/K12 purchasing channels.",
+    description: "Students develop business ideas, learn money management, branding, and leadership. Includes pitch presentations and team collaboration. Curriculum authored by TeeLee. Grades 5–12. Available in schools and after-school settings through B2G/K12 purchasing channels.",
   },
   {
     name: "Podcast Academy",
@@ -37,9 +37,9 @@ const FALLBACK_PROGRAMS = [
     description: "A relationship-building program designed to foster communication, trust, and mutual understanding between youth and law enforcement. Available in 1-day and 5-day formats for schools and community organizations.",
   },
   {
-    name: "ISA Sports Agency",
+    name: "ISA Imperial Transition Program",
     category: "Business of Sports",
-    description: "An introduction to sports management, agency roles, branding, marketing, and career pathways in the sports industry. Students participate in mock agency presentations and learn the business side of athletics.",
+    description: "ISA and Pleasant Beginnings bring the business of sports to athletic departments. The standard program runs six to eight weeks, with two sessions a week, across four pillars: NIL 101 (what's allowed, what to sign, what to avoid), Community (engagement that builds a real reputation), Money (financial literacy, taxes, saving and investing), and Brand (social, content and personal brand basics).",
   },
 ];
 

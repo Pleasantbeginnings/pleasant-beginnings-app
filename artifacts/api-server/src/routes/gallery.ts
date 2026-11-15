@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { db, galleryTable, eq } from "@workspace/db";
-import { CreateGalleryImageBody, ListGalleryResponse, ListGalleryResponseItem } from "@workspace/api-zod";
+import { db, galleryTable, eq } from "../../../../lib/db/src/index.js";
+import { CreateGalleryImageBody, ListGalleryResponse, ListGalleryResponseItem } from "../../../../lib/api-zod/src/index.js";
 
 const router = Router();
 

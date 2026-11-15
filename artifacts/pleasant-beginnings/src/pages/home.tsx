@@ -26,10 +26,11 @@ function StatCounter({ value, suffix = "", label, delay = 0, color = "text-prima
       transition={{ delay, duration: 0.5 }}
       className="text-center"
     >
-      <div className={`text-4xl md:text-5xl font-serif font-bold mb-2 ${color}`}>
+      <div className="w-10 h-1 rounded-full bg-secondary mx-auto mb-4"></div>
+      <div className={`text-5xl md:text-6xl font-serif font-bold mb-2 ${color}`}>
         {count}{suffix}
       </div>
-      <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{label}</div>
+      <div className="text-sm font-medium text-muted-foreground uppercase tracking-[0.18em]">{label}</div>
     </motion.div>
   );
 }
@@ -69,8 +70,10 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-primary text-primary-foreground py-32 px-4 md:px-8 overflow-hidden">
+      <section className="relative bg-primary text-primary-foreground py-32 md:py-40 px-4 md:px-8 overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-transparent to-primary"></div>
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[720px] h-[720px] rounded-full bg-secondary/15 blur-3xl pointer-events-none"></div>
         <div className="container mx-auto max-w-5xl relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -78,33 +81,35 @@ export default function Home() {
             transition={{ duration: 0.7 }}
             className="text-center"
           >
-            <span className="inline-block py-1 px-3 rounded-full bg-secondary/20 text-secondary border border-secondary/30 text-sm font-semibold tracking-wider mb-6">
-              BALTIMORE, MARYLAND
+            <span className="inline-block py-1.5 px-4 rounded-full bg-white/5 backdrop-blur-sm text-secondary border border-secondary/40 text-xs font-semibold tracking-[0.3em] uppercase mb-7">
+              Baltimore, Maryland
             </span>
-            <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6 text-white leading-tight">
+            <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6 text-white leading-[1.08] tracking-tight">
               Preparing for a <span className="text-secondary italic">Better Tomorrow</span>
             </h1>
-            <p className="text-xl md:text-2xl text-primary-foreground/80 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
+            <p className="text-xl md:text-2xl text-primary-foreground/80 mb-8 max-w-3xl mx-auto font-light leading-relaxed">
               We are a community-centered home serving youth and families. Everyone is expected, and everyone belongs.
             </p>
+            <div className="w-24 h-[3px] bg-secondary rounded-full mx-auto mb-10"></div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/programs">
-                <Button size="lg" className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 text-lg px-8 py-6 h-auto">
+                <Button size="lg" className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90 text-lg px-8 py-6 h-auto font-semibold tracking-wide shadow-xl shadow-secondary/20">
                   Explore Our Programs
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto border-white/20 text-white hover:bg-white/10 text-lg px-8 py-6 h-auto">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto border-white/30 text-white hover:bg-white/10 bg-white/5 backdrop-blur-sm text-lg px-8 py-6 h-auto font-semibold tracking-wide">
                   Get Help Today
                 </Button>
               </Link>
             </div>
           </motion.div>
         </div>
+        <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-secondary to-transparent"></div>
       </section>
 
       {/* Impact Stats */}
-      <section className="py-16 bg-muted px-4 md:px-8 border-y border-border/50">
+      <section className="py-20 bg-muted px-4 md:px-8 border-y border-border/50">
         <div className="container mx-auto">
           {statsLoading ? (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -127,11 +132,12 @@ export default function Home() {
       </section>
 
       {/* Featured Programs */}
-      <section className="py-24 px-4 md:px-8 bg-background">
+      <section className="py-28 px-4 md:px-8 bg-background">
         <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
             <div className="max-w-2xl">
-              <h2 className="font-serif text-4xl font-bold text-primary mb-4">Our Work in the Community</h2>
+              <div className="w-14 h-1 bg-secondary rounded-full mb-5"></div>
+              <h2 className="font-serif text-4xl font-bold text-primary mb-4 tracking-tight">Our Work in the Community</h2>
               <p className="text-lg text-muted-foreground">
                 We provide wraparound support through seven core programs designed to uplift families and empower youth.
               </p>
@@ -160,10 +166,11 @@ export default function Home() {
       </section>
 
       {/* Upcoming Events */}
-      <section className="py-24 px-4 md:px-8 bg-muted border-t border-border/50">
+      <section className="py-28 px-4 md:px-8 bg-muted border-t border-border/50">
         <div className="container mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="font-serif text-4xl font-bold text-primary mb-4">Join Us</h2>
+            <div className="w-14 h-1 bg-secondary rounded-full mx-auto mb-5"></div>
+            <h2 className="font-serif text-4xl font-bold text-primary mb-4 tracking-tight">Join Us</h2>
             <p className="text-lg text-muted-foreground">
               Connect with your neighbors at our upcoming community events.
             </p>
@@ -277,10 +284,11 @@ export default function Home() {
       )}
 
       {/* Success Stories Preview */}
-      <section className="py-24 px-4 md:px-8 bg-muted border-t border-border/50">
+      <section className="py-28 px-4 md:px-8 bg-muted border-t border-border/50">
         <div className="container mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="font-serif text-4xl font-bold text-primary mb-4">Stories of Impact</h2>
+            <div className="w-14 h-1 bg-secondary rounded-full mx-auto mb-5"></div>
+            <h2 className="font-serif text-4xl font-bold text-primary mb-4 tracking-tight">Stories of Impact</h2>
             <p className="text-lg text-muted-foreground">
               Hear from the people whose lives have been changed.
             </p>
@@ -302,7 +310,7 @@ export default function Home() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1, duration: 0.5 }}
-                    className="bg-card text-card-foreground p-8 rounded-xl shadow-sm border-l-4 border-[#C9A84C] relative flex flex-col h-full"
+                    className="bg-card text-card-foreground p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 border-l-4 border-[#C9A84C] relative flex flex-col h-full"
                   >
                     <Quote className="w-10 h-10 text-[#C9A84C] opacity-20 absolute top-4 left-4" />
                     <div className="relative z-10 flex-1">
@@ -419,7 +427,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.07, duration: 0.4 }}
-                className="bg-background border border-border/60 rounded-xl p-6 flex flex-col gap-2 hover:border-secondary/40 hover:shadow-sm transition-all"
+                className="bg-background border border-border/60 rounded-xl p-6 flex flex-col gap-2 hover:border-secondary/50 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="w-10 h-1 bg-secondary rounded-full mb-1" />
                 <p className="font-serif text-lg font-bold text-primary leading-snug">{partner.name}</p>
@@ -431,8 +439,9 @@ export default function Home() {
       </section>
 
       {/* Newsletter Signup */}
-      <section className="py-24 px-4 md:px-8 bg-[#0D1B2A] text-white">
-        <div className="container mx-auto max-w-3xl">
+      <section className="py-28 px-4 md:px-8 bg-[#0D1B2A] text-white relative overflow-hidden">
+        <div className="absolute -bottom-48 left-1/2 -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-secondary/10 blur-3xl pointer-events-none"></div>
+        <div className="container mx-auto max-w-3xl relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -497,7 +506,9 @@ export default function Home() {
       {/* Call to Action Strip */}
       <section className="grid grid-cols-1 md:grid-cols-2">
         <div className="bg-primary text-primary-foreground py-20 px-8 flex flex-col items-center justify-center text-center">
-          <HeartHandshake className="w-16 h-16 text-secondary mb-6" />
+          <div className="w-20 h-20 rounded-full border border-secondary/40 bg-white/5 flex items-center justify-center mb-6">
+            <HeartHandshake className="w-9 h-9 text-secondary" />
+          </div>
           <h3 className="font-serif text-3xl font-bold mb-4">Need Support?</h3>
           <p className="text-primary-foreground/80 mb-8 max-w-md">
             Whether you need housing resources, workforce training, or mental health support, we are here for you.
@@ -509,7 +520,9 @@ export default function Home() {
           </Link>
         </div>
         <div className="bg-secondary text-secondary-foreground py-20 px-8 flex flex-col items-center justify-center text-center">
-          <Users className="w-16 h-16 text-primary mb-6" />
+          <div className="w-20 h-20 rounded-full border border-primary/30 bg-primary/5 flex items-center justify-center mb-6">
+            <Users className="w-9 h-9 text-primary" />
+          </div>
           <h3 className="font-serif text-3xl font-bold mb-4 text-primary">Want to Give Back?</h3>
           <p className="text-secondary-foreground/80 mb-8 max-w-md">
             Our work is made possible by dedicated volunteers. Join us in preparing our community for a better tomorrow.

@@ -1,14 +1,21 @@
 import { Router } from "express";
+import type { Response } from "express";
 import { Readable } from "stream";
 import {
   RequestUploadUrlBody,
   RequestUploadUrlResponse,
-} from "@workspace/api-zod";
+} from "../../../../lib/api-zod/src/index.js";
 import { ObjectStorageService, ObjectNotFoundError } from "../lib/objectStorage.js";
 import { ObjectPermission } from "../lib/objectAcl.js";
 
 const router = Router();
 const objectStorageService = new ObjectStorageService();
+
+// Object storage only exists on Replit (sidecar + bucket env vars). On any
+// other host the storage routes answer a clean 503 instead of throwing.
+function storageNotConfigured(res: Response): void {
+  res.status(503).json({ error: "Object storage is not configured on this deployment" });
+}
 
 /**
  * POST /storage/uploads/request-url
@@ -18,6 +25,11 @@ const objectStorageService = new ObjectStorageService();
  * Then uploads the file directly to the returned presigned URL.
  */
 router.post("/storage/uploads/request-url", async (req, res) => {
+  if (!process.env.PRIVATE_OBJECT_DIR) {
+    storageNotConfigured(res);
+    return;
+  }
+
   const parsed = RequestUploadUrlBody.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ error: "Missing or invalid required fields" });
@@ -51,6 +63,11 @@ router.post("/storage/uploads/request-url", async (req, res) => {
  * IMPORTANT: Always provide this endpoint when object storage is set up.
  */
 router.get("/storage/public-objects/*filePath", async (req, res) => {
+  if (!process.env.PUBLIC_OBJECT_SEARCH_PATHS) {
+    storageNotConfigured(res);
+    return;
+  }
+
   try {
     const raw = req.params.filePath;
     const filePath = Array.isArray(raw) ? raw.join("/") : raw;
@@ -85,6 +102,11 @@ router.get("/storage/public-objects/*filePath", async (req, res) => {
  * be protected with authentication or ACL checks based on the use case.
  */
 router.get("/storage/objects/*path", async (req, res) => {
+  if (!process.env.PRIVATE_OBJECT_DIR) {
+    storageNotConfigured(res);
+    return;
+  }
+
   try {
     const raw = req.params.path;
     const wildcardPath = Array.isArray(raw) ? raw.join("/") : raw;

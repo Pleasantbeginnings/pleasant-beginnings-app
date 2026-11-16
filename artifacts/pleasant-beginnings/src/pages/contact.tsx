@@ -25,6 +25,35 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
+const LEADERSHIP_CONTACTS = [
+  {
+    name: "TeeLee",
+    title: "Founder & Executive Director | Program Director",
+    email: "teelee@pleasantbeginnings.info",
+    phone: "(410) 637-9113",
+  },
+  {
+    name: "De'Ashia Gibbs",
+    title: "Co-Executive Director",
+    email: "DeAshia@pleasantbeginnings.info",
+    phone: "(443) 802-0821",
+  },
+  {
+    name: "Jordyn Paige",
+    title: "Director of Operations",
+    email: "jord.pbbaltimore@gmail.com",
+  },
+];
+
+const DEPARTMENT_CONTACTS = [
+  { label: "General Info", email: "admin@pleasantbeginnings.info" },
+  { label: "Volunteer Info", email: "pbbaltimore.volunteer@gmail.com" },
+  { label: "Job Finder Program", email: "pbbaltimore.jobfinder@gmail.com" },
+  { label: "Stitch by Stitch Initiative", email: "stitchbystitchfmp@gmail.com" },
+  { label: "Annual HopeGiving", email: "hopegivingofficial@gmail.com" },
+  { label: "Pleasant Transitions", email: "pbtransitions@pleasantbeginnings.info" },
+];
+
 export default function Contact() {
   const { toast } = useToast();
   const [isSuccess, setIsSuccess] = useState(false);
@@ -110,6 +139,48 @@ export default function Contact() {
                     <p className="font-medium text-lg">(410) 637-9113</p>
                     <p className="text-primary-foreground/70">Office Phone</p>
                   </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-serif text-2xl font-bold text-primary mb-2">Reach the Right Inbox</h3>
+                <div className="h-0.5 w-12 bg-secondary rounded-full mb-4" />
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  Every program and department has its own inbox. Email the team you need directly and we will get back to you.
+                </p>
+
+                <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-sm">
+                  <p className="text-sm font-semibold tracking-widest text-secondary uppercase mb-3">Leadership</p>
+                  <ul className="divide-y divide-border/50">
+                    {LEADERSHIP_CONTACTS.map((c) => (
+                      <li key={c.email} className="py-3 first:pt-0 last:pb-0">
+                        <p className="font-medium text-primary">{c.name}</p>
+                        <p className="text-sm text-muted-foreground">{c.title}</p>
+                        <a href={`mailto:${c.email}`} className="text-sm text-secondary hover:underline break-all">
+                          {c.email}
+                        </a>
+                        {c.phone && (
+                          <p className="text-sm text-muted-foreground">
+                            <a href={`tel:${c.phone.replace(/[^0-9]/g, "")}`} className="hover:text-secondary transition-colors">
+                              {c.phone}
+                            </a>
+                          </p>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <p className="text-sm font-semibold tracking-widest text-secondary uppercase mt-6 mb-3">Programs &amp; Departments</p>
+                  <ul className="divide-y divide-border/50">
+                    {DEPARTMENT_CONTACTS.map((c) => (
+                      <li key={c.email} className="py-3 first:pt-0 last:pb-0">
+                        <p className="font-medium text-primary">{c.label}</p>
+                        <a href={`mailto:${c.email}`} className="text-sm text-secondary hover:underline break-all">
+                          {c.email}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </motion.div>

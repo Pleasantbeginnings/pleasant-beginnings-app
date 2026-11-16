@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/page-header";
 import { motion } from "framer-motion";
+import { Mail, Phone } from "lucide-react";
 
 const MILESTONES = [
   {
@@ -220,6 +221,15 @@ export default function About() {
                     Our work isn't just about fixing problems — it's about honoring the inherent potential in every person and building the infrastructure that makes lasting change possible.
                   </p>
                 </div>
+
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-base">
+                  <a href="mailto:teelee@pleasantbeginnings.info" className="inline-flex items-center gap-2 text-secondary hover:underline">
+                    <Mail className="w-4 h-4" /> teelee@pleasantbeginnings.info
+                  </a>
+                  <a href="tel:4106379113" className="inline-flex items-center gap-2 text-secondary hover:underline">
+                    <Phone className="w-4 h-4" /> (410) 637-9113
+                  </a>
+                </div>
               </motion.div>
             </div>
 
@@ -255,6 +265,57 @@ export default function About() {
                   <p className="font-medium text-foreground">
                     Together with Founder TeeLee Lee, De'Ashia helps lead an organization built on the belief that every person deserves the tools, support, and opportunity to build a better tomorrow.
                   </p>
+                </div>
+
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-base">
+                  <a href="mailto:DeAshia@pleasantbeginnings.info" className="inline-flex items-center gap-2 text-secondary hover:underline">
+                    <Mail className="w-4 h-4" /> DeAshia@pleasantbeginnings.info
+                  </a>
+                  <a href="tel:4438020821" className="inline-flex items-center gap-2 text-secondary hover:underline">
+                    <Phone className="w-4 h-4" /> (443) 802-0821
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Divider */}
+            <div className="border-t border-border/50" />
+
+            {/* Jordyn */}
+            <div className="flex flex-col md:flex-row items-center gap-12">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
+                className="w-full md:w-1/3 shrink-0"
+              >
+                <div className="aspect-square rounded-full overflow-hidden border-4 border-secondary/30 shadow-xl bg-primary flex items-center justify-center max-w-[280px] mx-auto">
+                  <span className="font-serif text-6xl text-secondary">JP</span>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                className="w-full md:w-2/3"
+              >
+                <p className="text-sm font-semibold tracking-widest text-secondary uppercase mb-3">Director of Operations</p>
+                <h2 className="font-serif text-4xl font-bold text-primary mb-2">Jordyn Paige</h2>
+                <p className="text-muted-foreground italic mb-6">Director of Operations</p>
+
+                <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
+                  <p>
+                    Jordyn Paige serves as Director of Operations for Pleasant Beginnings Inc., overseeing the day-to-day operations that keep PB's programs and services running for Baltimore youth and families.
+                  </p>
+                  <p>
+                    From coordinating schedules and logistics to supporting staff, partners, and program sites, Jordyn makes sure the work on the ground stays organized, responsive, and centered on the community PB serves.
+                  </p>
+                  <p className="font-medium text-foreground">
+                    Reach Jordyn for operations and program coordination inquiries.
+                  </p>
+                </div>
+
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-base">
+                  <a href="mailto:jord.pbbaltimore@gmail.com" className="inline-flex items-center gap-2 text-secondary hover:underline">
+                    <Mail className="w-4 h-4" /> jord.pbbaltimore@gmail.com
+                  </a>
                 </div>
               </motion.div>
             </div>
